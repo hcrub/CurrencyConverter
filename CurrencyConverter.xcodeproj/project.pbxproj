@@ -1,0 +1,387 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		62DEE9A016C19B71009A9F75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DEE99F16C19B71009A9F75 /* UIKit.framework */; };
+		62DEE9A216C19B71009A9F75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DEE9A116C19B71009A9F75 /* Foundation.framework */; };
+		62DEE9A416C19B71009A9F75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DEE9A316C19B71009A9F75 /* CoreGraphics.framework */; };
+		62DEE9AA16C19B71009A9F75 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62DEE9A816C19B71009A9F75 /* InfoPlist.strings */; };
+		62DEE9AC16C19B71009A9F75 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DEE9AB16C19B71009A9F75 /* main.m */; };
+		62DEE9B016C19B71009A9F75 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DEE9AF16C19B71009A9F75 /* AppDelegate.m */; };
+		62DEE9B216C19B71009A9F75 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DEE9B116C19B71009A9F75 /* Default.png */; };
+		62DEE9B416C19B71009A9F75 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DEE9B316C19B71009A9F75 /* Default@2x.png */; };
+		62DEE9B616C19B71009A9F75 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DEE9B516C19B71009A9F75 /* Default-568h@2x.png */; };
+		62DEE9B916C19B71009A9F75 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DEE9B816C19B71009A9F75 /* FirstViewController.m */; };
+		62DEE9BB16C19B71009A9F75 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DEE9BA16C19B71009A9F75 /* first.png */; };
+		62DEE9BD16C19B71009A9F75 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DEE9BC16C19B71009A9F75 /* first@2x.png */; };
+		62DEE9C016C19B71009A9F75 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DEE9BF16C19B71009A9F75 /* SecondViewController.m */; };
+		62DEE9C216C19B71009A9F75 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DEE9C116C19B71009A9F75 /* second.png */; };
+		62DEE9C416C19B71009A9F75 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DEE9C316C19B71009A9F75 /* second@2x.png */; };
+		62DEE9C716C19B71009A9F75 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62DEE9C516C19B71009A9F75 /* FirstViewController.xib */; };
+		62DEE9CA16C19B71009A9F75 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62DEE9C816C19B71009A9F75 /* SecondViewController.xib */; };
+		62DEE9D216C19CC3009A9F75 /* DownloadCurrencyRates.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DEE9D116C19CC3009A9F75 /* DownloadCurrencyRates.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		62DEE99C16C19B71009A9F75 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		62DEE99F16C19B71009A9F75 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		62DEE9A116C19B71009A9F75 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		62DEE9A316C19B71009A9F75 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		62DEE9A716C19B71009A9F75 /* CurrencyConverter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CurrencyConverter-Info.plist"; sourceTree = "<group>"; };
+		62DEE9A916C19B71009A9F75 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		62DEE9AB16C19B71009A9F75 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		62DEE9AD16C19B71009A9F75 /* CurrencyConverter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CurrencyConverter-Prefix.pch"; sourceTree = "<group>"; };
+		62DEE9AE16C19B71009A9F75 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		62DEE9AF16C19B71009A9F75 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		62DEE9B116C19B71009A9F75 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		62DEE9B316C19B71009A9F75 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		62DEE9B516C19B71009A9F75 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		62DEE9B716C19B71009A9F75 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		62DEE9B816C19B71009A9F75 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		62DEE9BA16C19B71009A9F75 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		62DEE9BC16C19B71009A9F75 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		62DEE9BE16C19B71009A9F75 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		62DEE9BF16C19B71009A9F75 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		62DEE9C116C19B71009A9F75 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		62DEE9C316C19B71009A9F75 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		62DEE9C616C19B71009A9F75 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController.xib; sourceTree = "<group>"; };
+		62DEE9C916C19B71009A9F75 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
+		62DEE9D016C19CC2009A9F75 /* DownloadCurrencyRates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCurrencyRates.h; sourceTree = "<group>"; };
+		62DEE9D116C19CC3009A9F75 /* DownloadCurrencyRates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCurrencyRates.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		62DEE99916C19B70009A9F75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62DEE9A016C19B71009A9F75 /* UIKit.framework in Frameworks */,
+				62DEE9A216C19B71009A9F75 /* Foundation.framework in Frameworks */,
+				62DEE9A416C19B71009A9F75 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		62DEE99316C19B70009A9F75 = {
+			isa = PBXGroup;
+			children = (
+				62DEE9A516C19B71009A9F75 /* CurrencyConverter */,
+				62DEE99E16C19B71009A9F75 /* Frameworks */,
+				62DEE99D16C19B71009A9F75 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		62DEE99D16C19B71009A9F75 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				62DEE99C16C19B71009A9F75 /* CurrencyConverter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		62DEE99E16C19B71009A9F75 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				62DEE99F16C19B71009A9F75 /* UIKit.framework */,
+				62DEE9A116C19B71009A9F75 /* Foundation.framework */,
+				62DEE9A316C19B71009A9F75 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		62DEE9A516C19B71009A9F75 /* CurrencyConverter */ = {
+			isa = PBXGroup;
+			children = (
+				62DEE9AE16C19B71009A9F75 /* AppDelegate.h */,
+				62DEE9AF16C19B71009A9F75 /* AppDelegate.m */,
+				62DEE9D316C1A95F009A9F75 /* FirstViewController */,
+				62DEE9D416C1A967009A9F75 /* SecondViewController */,
+				62DEE9D516C1A970009A9F75 /* DownloadCurrencyRates */,
+				62DEE9A616C19B71009A9F75 /* Supporting Files */,
+			);
+			path = CurrencyConverter;
+			sourceTree = "<group>";
+		};
+		62DEE9A616C19B71009A9F75 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				62DEE9D616C1DD94009A9F75 /* Images */,
+				62DEE9A716C19B71009A9F75 /* CurrencyConverter-Info.plist */,
+				62DEE9A816C19B71009A9F75 /* InfoPlist.strings */,
+				62DEE9AB16C19B71009A9F75 /* main.m */,
+				62DEE9AD16C19B71009A9F75 /* CurrencyConverter-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		62DEE9D316C1A95F009A9F75 /* FirstViewController */ = {
+			isa = PBXGroup;
+			children = (
+				62DEE9B716C19B71009A9F75 /* FirstViewController.h */,
+				62DEE9B816C19B71009A9F75 /* FirstViewController.m */,
+				62DEE9C516C19B71009A9F75 /* FirstViewController.xib */,
+			);
+			name = FirstViewController;
+			sourceTree = "<group>";
+		};
+		62DEE9D416C1A967009A9F75 /* SecondViewController */ = {
+			isa = PBXGroup;
+			children = (
+				62DEE9BE16C19B71009A9F75 /* SecondViewController.h */,
+				62DEE9BF16C19B71009A9F75 /* SecondViewController.m */,
+				62DEE9C816C19B71009A9F75 /* SecondViewController.xib */,
+			);
+			name = SecondViewController;
+			sourceTree = "<group>";
+		};
+		62DEE9D516C1A970009A9F75 /* DownloadCurrencyRates */ = {
+			isa = PBXGroup;
+			children = (
+				62DEE9D016C19CC2009A9F75 /* DownloadCurrencyRates.h */,
+				62DEE9D116C19CC3009A9F75 /* DownloadCurrencyRates.m */,
+			);
+			name = DownloadCurrencyRates;
+			sourceTree = "<group>";
+		};
+		62DEE9D616C1DD94009A9F75 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				62DEE9BA16C19B71009A9F75 /* first.png */,
+				62DEE9BC16C19B71009A9F75 /* first@2x.png */,
+				62DEE9C116C19B71009A9F75 /* second.png */,
+				62DEE9C316C19B71009A9F75 /* second@2x.png */,
+				62DEE9B116C19B71009A9F75 /* Default.png */,
+				62DEE9B316C19B71009A9F75 /* Default@2x.png */,
+				62DEE9B516C19B71009A9F75 /* Default-568h@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		62DEE99B16C19B70009A9F75 /* CurrencyConverter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 62DEE9CD16C19B71009A9F75 /* Build configuration list for PBXNativeTarget "CurrencyConverter" */;
+			buildPhases = (
+				62DEE99816C19B70009A9F75 /* Sources */,
+				62DEE99916C19B70009A9F75 /* Frameworks */,
+				62DEE99A16C19B70009A9F75 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CurrencyConverter;
+			productName = CurrencyConverter;
+			productReference = 62DEE99C16C19B71009A9F75 /* CurrencyConverter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		62DEE99416C19B70009A9F75 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Burchfield, Neil";
+			};
+			buildConfigurationList = 62DEE99716C19B70009A9F75 /* Build configuration list for PBXProject "CurrencyConverter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 62DEE99316C19B70009A9F75;
+			productRefGroup = 62DEE99D16C19B71009A9F75 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				62DEE99B16C19B70009A9F75 /* CurrencyConverter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		62DEE99A16C19B70009A9F75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62DEE9AA16C19B71009A9F75 /* InfoPlist.strings in Resources */,
+				62DEE9B216C19B71009A9F75 /* Default.png in Resources */,
+				62DEE9B416C19B71009A9F75 /* Default@2x.png in Resources */,
+				62DEE9B616C19B71009A9F75 /* Default-568h@2x.png in Resources */,
+				62DEE9BB16C19B71009A9F75 /* first.png in Resources */,
+				62DEE9BD16C19B71009A9F75 /* first@2x.png in Resources */,
+				62DEE9C216C19B71009A9F75 /* second.png in Resources */,
+				62DEE9C416C19B71009A9F75 /* second@2x.png in Resources */,
+				62DEE9C716C19B71009A9F75 /* FirstViewController.xib in Resources */,
+				62DEE9CA16C19B71009A9F75 /* SecondViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		62DEE99816C19B70009A9F75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62DEE9AC16C19B71009A9F75 /* main.m in Sources */,
+				62DEE9B016C19B71009A9F75 /* AppDelegate.m in Sources */,
+				62DEE9B916C19B71009A9F75 /* FirstViewController.m in Sources */,
+				62DEE9C016C19B71009A9F75 /* SecondViewController.m in Sources */,
+				62DEE9D216C19CC3009A9F75 /* DownloadCurrencyRates.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		62DEE9A816C19B71009A9F75 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62DEE9A916C19B71009A9F75 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		62DEE9C516C19B71009A9F75 /* FirstViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62DEE9C616C19B71009A9F75 /* en */,
+			);
+			name = FirstViewController.xib;
+			sourceTree = "<group>";
+		};
+		62DEE9C816C19B71009A9F75 /* SecondViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62DEE9C916C19B71009A9F75 /* en */,
+			);
+			name = SecondViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		62DEE9CB16C19B71009A9F75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		62DEE9CC16C19B71009A9F75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		62DEE9CE16C19B71009A9F75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Neil Burchfield (546B4X5N6L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Neil Burchfield (546B4X5N6L)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CurrencyConverter/CurrencyConverter-Prefix.pch";
+				INFOPLIST_FILE = "CurrencyConverter/CurrencyConverter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7EE0087C-F44E-40EE-A6E7-FD178075AF58";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7EE0087C-F44E-40EE-A6E7-FD178075AF58";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		62DEE9CF16C19B71009A9F75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Neil Burchfield (546B4X5N6L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Neil Burchfield (546B4X5N6L)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CurrencyConverter/CurrencyConverter-Prefix.pch";
+				INFOPLIST_FILE = "CurrencyConverter/CurrencyConverter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7EE0087C-F44E-40EE-A6E7-FD178075AF58";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7EE0087C-F44E-40EE-A6E7-FD178075AF58";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		62DEE99716C19B70009A9F75 /* Build configuration list for PBXProject "CurrencyConverter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62DEE9CB16C19B71009A9F75 /* Debug */,
+				62DEE9CC16C19B71009A9F75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		62DEE9CD16C19B71009A9F75 /* Build configuration list for PBXNativeTarget "CurrencyConverter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62DEE9CE16C19B71009A9F75 /* Debug */,
+				62DEE9CF16C19B71009A9F75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 62DEE99416C19B70009A9F75 /* Project object */;
+}
