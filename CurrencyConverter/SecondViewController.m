@@ -106,15 +106,33 @@
     if (cell == nil) {
         // Use the default cell style.
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:main_cell_identifier];
+                
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 5, 200, 21)];
+        nameLabel.backgroundColor = [UIColor clearColor];
+        nameLabel.textAlignment = NSTextAlignmentLeft;
+        nameLabel.font = [UIFont boldSystemFontOfSize:16.0f];
         
-        cell.textLabel.text = [[AppDelegate getNameArray] objectAtIndex:indexPath.row];
+        if ([[AppDelegate getCodesDictionary] objectForKey:[[AppDelegate getNameArray] objectAtIndex:indexPath.row]] != nil)
+            nameLabel.text = [NSString stringWithFormat:@"%@", [[[AppDelegate getCodesDictionary] objectForKey:[[AppDelegate getNameArray] objectAtIndex:indexPath.row]] valueForKey:@"name"]];
+        else
+            nameLabel.text = [NSString stringWithFormat:@"%@", [[AppDelegate getNameArray] objectAtIndex:indexPath.row] ];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
-        label.backgroundColor = [UIColor clearColor];
-        label.textAlignment = NSTextAlignmentRight;
-        label.font = [UIFont systemFontOfSize:14.0f];
-        label.text = [[AppDelegate getPriceArray] objectAtIndex:indexPath.row];
-        cell.accessoryView = label;
+        [cell.contentView addSubview:nameLabel];
+        
+        UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 22, 200, 21)];
+        detailLabel.backgroundColor = [UIColor clearColor];
+        detailLabel.textAlignment = NSTextAlignmentLeft;
+        detailLabel.font = [UIFont fontWithName:@"HelveticaNeue-Italic" size:13.0f];
+        detailLabel.textColor = [UIColor grayColor];
+        detailLabel.text = [[AppDelegate getNameArray] objectAtIndex:indexPath.row];
+        [cell.contentView addSubview:detailLabel];
+        
+        UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
+        valueLabel.backgroundColor = [UIColor clearColor];
+        valueLabel.textAlignment = NSTextAlignmentRight;
+        valueLabel.font = [UIFont systemFontOfSize:14.0f];
+        valueLabel.text = [[AppDelegate getPriceArray] objectAtIndex:indexPath.row];
+        cell.accessoryView = valueLabel;
     }
 
     return cell;

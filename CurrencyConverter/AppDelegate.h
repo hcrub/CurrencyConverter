@@ -11,6 +11,7 @@
 #import "FirstViewController.h"
 #import "SecondViewController.h"
 #import "DownloadCurrencyRates.h"
+#import "FirstViewController_iPhone.h"
 
 /* Class Declarations */
 @class DownloadCurrencyRates;
@@ -24,6 +25,8 @@
 @property (strong, nonatomic) DownloadCurrencyRates *dcr;
 
 /* Global Methods */
++ (void) setCodesDictionary:(NSMutableDictionary *)dictionary;
++ (NSMutableDictionary *) getCodesDictionary;
 + (void) setDictionary:(NSMutableDictionary *)dictionary;
 + (NSMutableDictionary *) getDictionary;
 + (void) setNameArray:(NSMutableArray *)array;

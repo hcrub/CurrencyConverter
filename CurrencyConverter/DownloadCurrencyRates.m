@@ -79,13 +79,21 @@ static NSString * url = @"http://finance.yahoo.com/webservice/v1/symbols/allcurr
  */
 - (NSMutableArray *) parseDictionaryNames:(NSMutableDictionary *)dictionary
 {
+    NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@"/"];
     NSMutableDictionary *namesDictionary =[[NSMutableDictionary alloc] init];
     namesDictionary = [dictionary copy];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for ( int x = 0; x < namesDictionary.count; x++)
     {
-        [array addObject:[[namesDictionary valueForKey:@"name"] objectAtIndex:x]];
+        NSString *original = [[namesDictionary valueForKey:@"name"] objectAtIndex:x];
+        
+        if ([original rangeOfCharacterFromSet:set].location != NSNotFound)
+        {
+            NSRange range = [original rangeOfString:@"/"];
+            NSString *substring = [original substringFromIndex:NSMaxRange(range)];
+            [array addObject:substring];
+        }
     }
     return array;
 }

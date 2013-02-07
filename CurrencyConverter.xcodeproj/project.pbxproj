@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		620E450B16C3255F0028F19E /* FirstViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 620E450916C3255F0028F19E /* FirstViewController_iPhone.m */; };
+		620E450C16C3255F0028F19E /* FirstViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 620E450A16C3255F0028F19E /* FirstViewController_iPhone.xib */; };
+		620E451816C32A580028F19E /* DownloadCurrencyCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 620E451716C32A580028F19E /* DownloadCurrencyCodes.m */; };
+		620E451C16C331320028F19E /* donedown.png in Resources */ = {isa = PBXBuildFile; fileRef = 620E451A16C331320028F19E /* donedown.png */; };
+		620E451D16C331320028F19E /* doneup.png in Resources */ = {isa = PBXBuildFile; fileRef = 620E451B16C331320028F19E /* doneup.png */; };
 		62DEE9A016C19B71009A9F75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DEE99F16C19B71009A9F75 /* UIKit.framework */; };
 		62DEE9A216C19B71009A9F75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DEE9A116C19B71009A9F75 /* Foundation.framework */; };
 		62DEE9A416C19B71009A9F75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DEE9A316C19B71009A9F75 /* CoreGraphics.framework */; };
@@ -28,6 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		620E450816C3255F0028F19E /* FirstViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController_iPhone.h; sourceTree = "<group>"; };
+		620E450916C3255F0028F19E /* FirstViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController_iPhone.m; sourceTree = "<group>"; };
+		620E450A16C3255F0028F19E /* FirstViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController_iPhone.xib; sourceTree = "<group>"; };
+		620E451616C32A580028F19E /* DownloadCurrencyCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCurrencyCodes.h; sourceTree = "<group>"; };
+		620E451716C32A580028F19E /* DownloadCurrencyCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCurrencyCodes.m; sourceTree = "<group>"; };
+		620E451A16C331320028F19E /* donedown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = donedown.png; sourceTree = "<group>"; };
+		620E451B16C331320028F19E /* doneup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doneup.png; sourceTree = "<group>"; };
 		62DEE99C16C19B71009A9F75 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62DEE99F16C19B71009A9F75 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		62DEE9A116C19B71009A9F75 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -69,6 +81,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		620E450D16C3256D0028F19E /* FirstViewController_iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				620E450816C3255F0028F19E /* FirstViewController_iPhone.h */,
+				620E450916C3255F0028F19E /* FirstViewController_iPhone.m */,
+				620E450A16C3255F0028F19E /* FirstViewController_iPhone.xib */,
+			);
+			name = FirstViewController_iPhone;
+			sourceTree = "<group>";
+		};
+		620E451416C325940028F19E /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				620E450D16C3256D0028F19E /* FirstViewController_iPhone */,
+			);
+			name = iPhone;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		620E451516C3259D0028F19E /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				62DEE9D316C1A95F009A9F75 /* FirstViewController */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		620E451916C32A5F0028F19E /* DownloadCurrencyCodes */ = {
+			isa = PBXGroup;
+			children = (
+				620E451616C32A580028F19E /* DownloadCurrencyCodes.h */,
+				620E451716C32A580028F19E /* DownloadCurrencyCodes.m */,
+			);
+			name = DownloadCurrencyCodes;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		62DEE99316C19B70009A9F75 = {
 			isa = PBXGroup;
 			children = (
@@ -101,9 +150,11 @@
 			children = (
 				62DEE9AE16C19B71009A9F75 /* AppDelegate.h */,
 				62DEE9AF16C19B71009A9F75 /* AppDelegate.m */,
-				62DEE9D316C1A95F009A9F75 /* FirstViewController */,
+				620E451516C3259D0028F19E /* iPad */,
+				620E451416C325940028F19E /* iPhone */,
 				62DEE9D416C1A967009A9F75 /* SecondViewController */,
 				62DEE9D516C1A970009A9F75 /* DownloadCurrencyRates */,
+				620E451916C32A5F0028F19E /* DownloadCurrencyCodes */,
 				62DEE9A616C19B71009A9F75 /* Supporting Files */,
 			);
 			path = CurrencyConverter;
@@ -112,6 +163,8 @@
 		62DEE9A616C19B71009A9F75 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				620E451A16C331320028F19E /* donedown.png */,
+				620E451B16C331320028F19E /* doneup.png */,
 				62DEE9D616C1DD94009A9F75 /* Images */,
 				62DEE9A716C19B71009A9F75 /* CurrencyConverter-Info.plist */,
 				62DEE9A816C19B71009A9F75 /* InfoPlist.strings */,
@@ -225,6 +278,9 @@
 				62DEE9C416C19B71009A9F75 /* second@2x.png in Resources */,
 				62DEE9C716C19B71009A9F75 /* FirstViewController.xib in Resources */,
 				62DEE9CA16C19B71009A9F75 /* SecondViewController.xib in Resources */,
+				620E450C16C3255F0028F19E /* FirstViewController_iPhone.xib in Resources */,
+				620E451C16C331320028F19E /* donedown.png in Resources */,
+				620E451D16C331320028F19E /* doneup.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +296,8 @@
 				62DEE9B916C19B71009A9F75 /* FirstViewController.m in Sources */,
 				62DEE9C016C19B71009A9F75 /* SecondViewController.m in Sources */,
 				62DEE9D216C19CC3009A9F75 /* DownloadCurrencyRates.m in Sources */,
+				620E450B16C3255F0028F19E /* FirstViewController_iPhone.m in Sources */,
+				620E451816C32A580028F19E /* DownloadCurrencyCodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +400,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7EE0087C-F44E-40EE-A6E7-FD178075AF58";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7EE0087C-F44E-40EE-A6E7-FD178075AF58";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -357,6 +416,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7EE0087C-F44E-40EE-A6E7-FD178075AF58";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7EE0087C-F44E-40EE-A6E7-FD178075AF58";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -380,6 +440,7 @@
 				62DEE9CF16C19B71009A9F75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

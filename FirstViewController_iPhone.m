@@ -1,20 +1,19 @@
 //
-//  FirstViewController.m
+//  FirstViewController_iPhone.m
 //  CurrencyConverter
 //
-//  Created by Burchfield, Neil on 2/5/13.
+//  Created by Burchfield, Neil on 2/6/13.
 //  Copyright (c) 2013 Burchfield, Neil. All rights reserved.
 //
 
 /* Imports */
-#import "FirstViewController.h"
+#import "FirstViewController_iPhone.h"
 
 /* Definitions */
 #define NUMBERS_ONLY @"1234567890"
 #define CHARACTER_LIMIT 10
 
-/* Main Implementation */
-@implementation FirstViewController
+@implementation FirstViewController_iPhone
 
 /*
  InitWithNibName
@@ -49,10 +48,9 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view, typically from a nib.
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStyleGrouped];
-    
-    [self createPopover];
-    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.view.bounds.size.width,
+                                                                   self.navigationController.view.bounds.size.height) style:UITableViewStyleGrouped];
+    [self downloadCurrencyExchangeCodes];
     [self downloadCurrencyExchangeRates];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(calculateConversion:)
@@ -61,25 +59,53 @@
                                                  name:@"UITextFieldTextDidChangeNotification" object:conversionLabel];
 }
 
+- (UIToolbar *) keyboardToolbar
+{
+    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
+    numberToolbar.barStyle = UIBarStyleBlackTranslucent;
+    numberToolbar.items = [NSArray arrayWithObjects:
+                           [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNumberPad)],
+                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                           [[UIBarButtonItem alloc]initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
+                           nil];
+    [numberToolbar sizeToFit];
+    
+    return numberToolbar;
+}
+
 /*
- CreatePopover
+ SelectCurrencyNavigationView
  --------
- Purpose:        Creates popover for selecting destination currency 
+ Purpose:        Pushes view to select currency
  Parameters:     none
  Returns:        none
  Notes:          --
  Author:         Neil Burchfield
  */
-- (void) createPopover
+- (void) selectCurrencyNavigationView
 {
-    UIViewController *popoverViewController = [[UIViewController alloc] init];
-    toTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 300, 300) style:UITableViewStylePlain];
+    UIViewController *vc = [[UIViewController alloc] init];
+    vc.title = @"Select Currency";
+    toTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.view.bounds.size.width, vc.view.bounds.size.height - 49 * 2) style:UITableViewStylePlain];
     toTableview.dataSource = self;
     toTableview.delegate = self;
-    
-    [popoverViewController.view addSubview:toTableview];
-    popover = [[UIPopoverController alloc] initWithContentViewController:popoverViewController];
-    [popover setPopoverContentSize:CGSizeMake(300, 300)];
+    [vc.view addSubview:toTableview];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+/*
+ downloadCurrencyExchangeRates
+ --------
+ Purpose:        Caches Currencies
+ Parameters:     none
+ Returns:        none
+ Notes:          --
+ Author:         Neil Burchfield
+ */
+- (void) downloadCurrencyExchangeCodes
+{
+    DownloadCurrencyCodes *downloadCodes = [[DownloadCurrencyCodes alloc] init];
+    [downloadCodes downloadUrl];
 }
 
 /*
@@ -123,7 +149,7 @@
  */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == toTableview)
-        return [[AppDelegate getDictionary] count];
+        return [[AppDelegate getNameArray] count];
     return 1;
 }
 
@@ -164,20 +190,6 @@
     return @"";
 }
 
-- (UIToolbar *) keyboardToolbar
-{
-    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
-    numberToolbar.barStyle = UIBarStyleBlackTranslucent;
-    numberToolbar.items = [NSArray arrayWithObjects:
-                           [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNumberPad)],
-                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                           [[UIBarButtonItem alloc]initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
-                           nil];
-    [numberToolbar sizeToFit];
-    
-    return numberToolbar;
-}
-
 /*
  CellForRowAtIndexPath
  --------
@@ -191,7 +203,7 @@
     
     static NSString *main_cell_identifier = @"cell";
     static NSString *from_cell_identifier = @"from_cell";
-
+    
     UITableViewCell *cell;
     
     if (tableView == self.tableView)
@@ -212,6 +224,7 @@
                 amountTextfield.placeholder = @"Enter Value";
                 amountTextfield.textAlignment = NSTextAlignmentRight;
                 amountTextfield.returnKeyType = UIReturnKeyDone;
+                amountTextfield.keyboardType = UIKeyboardTypeNumberPad;
                 amountTextfield.delegate = self;
                 amountTextfield.text = enteredAmount;
                 amountTextfield.inputAccessoryView = [self keyboardToolbar];
@@ -268,19 +281,19 @@
         if (cell == nil) {
             // Use the default cell style.
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:from_cell_identifier];
-            
+
             UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 5, 200, 21)];
             nameLabel.backgroundColor = [UIColor clearColor];
             nameLabel.textAlignment = NSTextAlignmentLeft;
             nameLabel.font = [UIFont boldSystemFontOfSize:16.0f];
-            
+
             if ([[AppDelegate getCodesDictionary] objectForKey:[[AppDelegate getNameArray] objectAtIndex:indexPath.row]] != nil)
-                nameLabel.text = [NSString stringWithFormat:@"%@", [[[AppDelegate getCodesDictionary] objectForKey:[[AppDelegate getNameArray] objectAtIndex:indexPath.row]] valueForKey:@"name"]];
+            nameLabel.text = [NSString stringWithFormat:@"%@", [[[AppDelegate getCodesDictionary] objectForKey:[[AppDelegate getNameArray] objectAtIndex:indexPath.row]] valueForKey:@"name"]];
             else
-                nameLabel.text = [NSString stringWithFormat:@"%@", [[AppDelegate getNameArray] objectAtIndex:indexPath.row] ];
-            
+            nameLabel.text = [NSString stringWithFormat:@"%@", [[AppDelegate getNameArray] objectAtIndex:indexPath.row] ];
+
             [cell.contentView addSubview:nameLabel];
-            
+
             UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 22, 200, 21)];
             detailLabel.backgroundColor = [UIColor clearColor];
             detailLabel.textAlignment = NSTextAlignmentLeft;
@@ -288,18 +301,29 @@
             detailLabel.textColor = [UIColor grayColor];
             detailLabel.text = [[AppDelegate getNameArray] objectAtIndex:indexPath.row];
             [cell.contentView addSubview:detailLabel];
-            
-            UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 125, 21)];
+
+            UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
             valueLabel.backgroundColor = [UIColor clearColor];
-            valueLabel.textAlignment = NSTextAlignmentLeft;
+            valueLabel.textAlignment = NSTextAlignmentRight;
             valueLabel.font = [UIFont systemFontOfSize:14.0f];
             valueLabel.text = [[AppDelegate getPriceArray] objectAtIndex:indexPath.row];
             cell.accessoryView = valueLabel;
+
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         }
     }
-
+    
     return cell;
 }
+
+-(void)cancelNumberPad{
+    [amountTextfield resignFirstResponder];
+}
+
+-(void)doneWithNumberPad{
+    [amountTextfield resignFirstResponder];
+}
+
 
 /*
  CalculateConversion
@@ -322,14 +346,6 @@
     }
 }
 
--(void)cancelNumberPad{
-    [amountTextfield resignFirstResponder];
-}
-
--(void)doneWithNumberPad{
-    [amountTextfield resignFirstResponder];
-}
-
 /*
  To conform to Human Interface Guildelines, since selecting a row would have no effect (such as navigation), make sure that rows cannot be selected.
  */
@@ -349,10 +365,7 @@
     {
         if (indexPath.section == 2)
         {
-            CGRect rect = [tableView rectForRowAtIndexPath:indexPath];
-            [popover presentPopoverFromRect:CGRectMake(rect.size.width - 300, rect.origin.y + rect.size.height/2 + 57, 10, 10)
-                                     inView:self.navigationController.view permittedArrowDirections:UIPopoverArrowDirectionLeft
-                                   animated:YES];
+            [self selectCurrencyNavigationView];
         }
     }
     else if (tableView == toTableview)

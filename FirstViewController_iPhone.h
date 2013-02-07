@@ -1,8 +1,8 @@
 //
-//  FirstViewController.h
+//  FirstViewController_iPhone.h
 //  CurrencyConverter
 //
-//  Created by Burchfield, Neil on 2/5/13.
+//  Created by Burchfield, Neil on 2/6/13.
 //  Copyright (c) 2013 Burchfield, Neil. All rights reserved.
 //
 
@@ -10,9 +10,10 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "DownloadCurrencyRates.h"
+#import "DownloadCurrencyCodes.h"
 
 /* Header Declaration */
-@interface FirstViewController : UITableViewController <UITextFieldDelegate> {
+@interface FirstViewController_iPhone : UITableViewController <UITextFieldDelegate> {
     
     /* Variables */
     UILabel *toLabel;
@@ -20,7 +21,6 @@
     UITableView *toTableview;
     UILabel *conversionLabel;
     UITextField *amountTextfield;
-    UIPopoverController *popover;
     
     NSString *enteredAmount;
     NSString *resultAmount;
