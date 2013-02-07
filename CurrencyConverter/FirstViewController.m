@@ -76,7 +76,7 @@
  */
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [toTableview reloadData];
+//    [toTableview reloadData];
 } /* viewWillAppear */
 
 
@@ -97,7 +97,7 @@
     toTableview.delegate = self;
 
     // Reload Data
-    [toTableview reloadData];
+//    [toTableview reloadData];
 
     // Add Tableview to Popover
     [popoverViewController.view addSubview:toTableview];
@@ -150,7 +150,7 @@
     if (tableView == toTableview)
         return 1;
 
-    return 5;
+    return 4;
 } /* numberOfSectionsInTableView */
 
 
@@ -185,22 +185,18 @@
     if (tableView == self.tableView) {
         switch (section) {
             case 0:
-                return @"Enter Amount";
+                return @"Enter US Dollar Amount";
 
                 break;
             case 1:
-                return @"   From";
+                return @"Convert To";
 
                 break;
             case 2:
-                return @"   To";
-
-                break;
-            case 3:
                 return @"Conversion Rate (Buy/Sell)";
 
                 break;
-            case 4:
+            case 3:
                 return @"Results";
 
                 break;
@@ -267,25 +263,17 @@
             case 0:
             {
                 amountTextfield = [[UITextField alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
-                amountTextfield.placeholder = @"Enter Value";
+                amountTextfield.placeholder = @"Enter US Dollar amount";
                 amountTextfield.textAlignment = NSTextAlignmentRight;
                 amountTextfield.returnKeyType = UIReturnKeyDone;
                 amountTextfield.delegate = self;
+                amountTextfield.keyboardType = UIKeyboardTypeNumberPad;
                 amountTextfield.text = enteredAmount;
                 amountTextfield.inputAccessoryView = [self keyboardToolbar];
                 cell.accessoryView = amountTextfield;
             }
             break;
             case 1:
-            {
-                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
-                label.backgroundColor = [UIColor clearColor];
-                label.textAlignment = NSTextAlignmentRight;
-                label.text = @"USD";
-                cell.accessoryView = label;
-            }
-            break;
-            case 2:
             {
                 toLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
                 toLabel.backgroundColor = [UIColor clearColor];
@@ -295,7 +283,7 @@
                 cell.accessoryView = toLabel;
             }
             break;
-            case 3:
+            case 2:
             {
                 conversionLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
                 conversionLabel.backgroundColor = [UIColor clearColor];
@@ -304,7 +292,7 @@
                 cell.accessoryView = conversionLabel;
             }
             break;
-            case 4:
+            case 3:
             {
                 resultsLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
                 resultsLabel.backgroundColor = [UIColor clearColor];
@@ -325,7 +313,7 @@
             // Use the default cell style.
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:from_cell_identifier];
 
-            UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 5, 200, 21)];
+            UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 5, 150, 21)];
             nameLabel.backgroundColor = [UIColor clearColor];
             nameLabel.textAlignment = NSTextAlignmentLeft;
             nameLabel.font = [UIFont boldSystemFontOfSize:16.0f];
@@ -425,7 +413,7 @@
 - (NSIndexPath *) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (tableView == self.tableView) {
-        if (indexPath.section == 2) {
+        if (indexPath.section == 1) {
             // Produce Popover
             CGRect rect = [tableView rectForRowAtIndexPath:indexPath];
             [popover presentPopoverFromRect:CGRectMake(rect.size.width - 300, rect.origin.y + rect.size.height / 2 + 57, 10, 10)

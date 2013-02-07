@@ -59,10 +59,32 @@ static NSString * url = @"http://finance.yahoo.com/webservice/v1/symbols/allcurr
                                                           options:NSJSONReadingMutableContainers
                                                             error:nil];
     
-    NSMutableDictionary *parsedDictionary = [[[[JSON valueForKey:@"list"]
+    NSMutableDictionary *fetchedDictionary = [[[[JSON valueForKey:@"list"]
                                                      valueForKey:@"resources"]
                                                      valueForKey:@"resource"]
                                                      valueForKey:@"fields"];
+    
+    // Sort Dictionary
+    NSMutableDictionary *parsedDictionary = [[NSMutableDictionary alloc] init];
+    for ( int foo = 0; foo < fetchedDictionary.count; foo++ ) {
+        
+        // Parse Symbols
+        NSString *original = [[fetchedDictionary valueForKey:@"name"] objectAtIndex:foo];
+        if ([original rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]].location != NSNotFound)
+        {
+            original = [original substringFromIndex:NSMaxRange([original rangeOfString:@"/"])];
+        }
+        else
+        {
+            original = [original stringByReplacingOccurrencesOfString:@"\"" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [original length])];
+        }
+        
+        // Add Values for Keys in new object
+        [parsedDictionary setObject:[[fetchedDictionary valueForKey:@"price"] objectAtIndex:foo] forKey:original];
+        
+    }
+    
+    // Stash Results on AppDelegate Methods
     [AppDelegate setDictionary:parsedDictionary];
     [AppDelegate setNameArray:[self parseDictionaryNames:parsedDictionary]];
     [AppDelegate setPriceArray:[self parseDictionaryPrices:parsedDictionary]];
@@ -79,23 +101,7 @@ static NSString * url = @"http://finance.yahoo.com/webservice/v1/symbols/allcurr
  */
 - (NSMutableArray *) parseDictionaryNames:(NSMutableDictionary *)dictionary
 {
-    NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@"/"];
-    NSMutableDictionary *namesDictionary =[[NSMutableDictionary alloc] init];
-    namesDictionary = [dictionary copy];
-    
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for ( int x = 0; x < namesDictionary.count; x++)
-    {
-        NSString *original = [[namesDictionary valueForKey:@"name"] objectAtIndex:x];
-        
-        if ([original rangeOfCharacterFromSet:set].location != NSNotFound)
-        {
-            NSRange range = [original rangeOfString:@"/"];
-            NSString *substring = [original substringFromIndex:NSMaxRange(range)];
-            [array addObject:substring];
-        }
-    }
-    return array;
+    return [[[dictionary allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] copy];
 }
 
 /*
@@ -110,15 +116,15 @@ static NSString * url = @"http://finance.yahoo.com/webservice/v1/symbols/allcurr
 
 - (NSMutableArray *) parseDictionaryPrices:(NSMutableDictionary *)dictionary
 {
-    NSMutableDictionary *pricesDictionary =[[NSMutableDictionary alloc] init];
-    pricesDictionary = [dictionary copy];
-
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for ( int x = 0; x < pricesDictionary.count; x++)
+    int index = 0;
+    NSMutableArray *values = [[NSMutableArray alloc] init];
+    for (NSString *key in dictionary)
     {
-        [array addObject:[[pricesDictionary valueForKey:@"price"] objectAtIndex:x]];
+        [values addObject:[dictionary valueForKey:[[self parseDictionaryNames:dictionary] objectAtIndex:index]]];
+        index++;
     }
-    return array;
+    
+    return [values copy];
 }
 
 /*

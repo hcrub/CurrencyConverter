@@ -48,6 +48,20 @@
     [toTableview reloadData];
 } /* viewWillAppear */
 
+/*
+ DidRotateFromInterfaceOrientation
+ --------
+ Purpose:        Handles Orientation Change
+ Parameters:     UIInterfaceOrientation
+ Returns:        none
+ Notes:          Class Delegate
+ Author:         Neil Burchfield
+ */
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [vc.view setFrame:self.navigationController.view.bounds];
+    [toTableview setFrame:CGRectMake(0, 0, self.navigationController.view.bounds.size.width, self.navigationController.view.bounds.size.height - 49 * 2)];
+}
 
 /*
    ViewDidLoad
@@ -110,7 +124,7 @@
    Author:         Neil Burchfield
  */
 - (void) selectCurrencyNavigationView {
-    UIViewController *vc = [[UIViewController alloc] init];
+    vc = [[UIViewController alloc] init];
     vc.title = @"Select Currency";
     toTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.view.bounds.size.width,
                                                                 vc.view.bounds.size.height - 49 * 2) style:UITableViewStylePlain];
@@ -166,7 +180,7 @@
     if (tableView == toTableview)
         return 1;
 
-    return 5;
+    return 4;
 } /* numberOfSectionsInTableView */
 
 
@@ -201,22 +215,18 @@
     if (tableView == self.tableView) {
         switch (section) {
             case 0:
-                return @"Enter Amount";
+                return @"Enter US Dollar Amount";
 
                 break;
             case 1:
-                return @"   From";
+                return @"Convert To";
 
                 break;
             case 2:
-                return @"   To";
-
-                break;
-            case 3:
                 return @"Conversion Rate (Buy/Sell)";
 
                 break;
-            case 4:
+            case 3:
                 return @"Results";
 
                 break;
@@ -260,7 +270,7 @@
             case 0:
             {
                 amountTextfield = [[UITextField alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
-                amountTextfield.placeholder = @"Enter Value";
+                amountTextfield.placeholder = @"Enter US Dollar amount";
                 amountTextfield.textAlignment = NSTextAlignmentRight;
                 amountTextfield.returnKeyType = UIReturnKeyDone;
                 amountTextfield.keyboardType = UIKeyboardTypeNumberPad;
@@ -272,15 +282,6 @@
             break;
             case 1:
             {
-                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
-                label.backgroundColor = [UIColor clearColor];
-                label.textAlignment = NSTextAlignmentRight;
-                label.text = @"USD";
-                cell.accessoryView = label;
-            }
-            break;
-            case 2:
-            {
                 toLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
                 toLabel.backgroundColor = [UIColor clearColor];
                 toLabel.textAlignment = NSTextAlignmentRight;
@@ -289,7 +290,7 @@
                 cell.accessoryView = toLabel;
             }
             break;
-            case 3:
+            case 2:
             {
                 conversionLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
                 conversionLabel.backgroundColor = [UIColor clearColor];
@@ -298,7 +299,7 @@
                 cell.accessoryView = conversionLabel;
             }
             break;
-            case 4:
+            case 3:
             {
                 resultsLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
                 resultsLabel.backgroundColor = [UIColor clearColor];
@@ -425,7 +426,7 @@
 - (NSIndexPath *) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (tableView == self.tableView) {
-        if (indexPath.section == 2) {
+        if (indexPath.section == 1) {
             [self selectCurrencyNavigationView];
         }
     } else if (tableView == toTableview) {
@@ -435,11 +436,16 @@
         conversionLabel.text = toConversionAmount;
         [self calculateConversion:self];
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        [self performSelector:@selector(pop) withObject:nil afterDelay:0.1f];
     }
 
     return nil;
 } /* tableView */
 
+- (void) pop
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 /*
    ShouldChangeCharactersInRange

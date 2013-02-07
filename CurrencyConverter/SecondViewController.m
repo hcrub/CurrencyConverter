@@ -86,7 +86,7 @@
    Author:         Neil Burchfield
  */
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[AppDelegate getDictionary] count];
+    return [[AppDelegate getNameArray] count];
 } /* tableView */
 
 
@@ -125,10 +125,14 @@
         // Use the default cell style.
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:main_cell_identifier];
 
-        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 5, 200, 21)];
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 5, 225, 21)];
         nameLabel.backgroundColor = [UIColor clearColor];
         nameLabel.textAlignment = NSTextAlignmentLeft;
-        nameLabel.font = [UIFont boldSystemFontOfSize:16.0f];
+        
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+            nameLabel.font = [UIFont boldSystemFontOfSize:16.0f];
+        else
+            nameLabel.font = [UIFont boldSystemFontOfSize:14.0f];
 
         if ([[AppDelegate getCodesDictionary] objectForKey:[[AppDelegate getNameArray] objectAtIndex:indexPath.row]] != nil)
             nameLabel.text = [NSString stringWithFormat:@"%@", [[[AppDelegate getCodesDictionary] objectForKey:[[AppDelegate getNameArray] objectAtIndex:indexPath.row]] valueForKey:@"name"]];

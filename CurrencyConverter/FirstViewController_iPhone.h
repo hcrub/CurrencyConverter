@@ -26,6 +26,8 @@
     NSString *resultAmount;
     NSString *toConversionAmount;
     NSString *toConversionName;
+    
+    UIViewController *vc;
 }
 
 @end
