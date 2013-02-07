@@ -13,7 +13,7 @@
 
 /* Header Declaration */
 @interface FirstViewController : UITableViewController <UITextFieldDelegate> {
-    
+
     /* Variables */
     UILabel *toLabel;
     UILabel *resultsLabel;
@@ -21,7 +21,7 @@
     UILabel *conversionLabel;
     UITextField *amountTextfield;
     UIPopoverController *popover;
-    
+
     NSString *enteredAmount;
     NSString *resultAmount;
     NSString *toConversionAmount;

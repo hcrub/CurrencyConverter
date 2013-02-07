@@ -14,14 +14,14 @@
 
 /* Header Declaration */
 @interface FirstViewController_iPhone : UITableViewController <UITextFieldDelegate> {
-    
+
     /* Variables */
     UILabel *toLabel;
     UILabel *resultsLabel;
     UITableView *toTableview;
     UILabel *conversionLabel;
     UITextField *amountTextfield;
-    
+
     NSString *enteredAmount;
     NSString *resultAmount;
     NSString *toConversionAmount;

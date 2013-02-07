@@ -10,70 +10,84 @@
 #import "FirstViewController_iPhone.h"
 
 /* Definitions */
-#define NUMBERS_ONLY @"1234567890"
+#define NUMBERS_ONLY    @"1234567890"
 #define CHARACTER_LIMIT 10
 
 @implementation FirstViewController_iPhone
 
 /*
- InitWithNibName
- --------
- Purpose:        Init/Alloc initial methods
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   InitWithNibName
+   --------
+   Purpose:        Init/Alloc initial methods
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"Currency Converter", @"First");
         self.tabBarItem.image = [UIImage imageNamed:@"first"];
     }
     return self;
-}
+} /* initWithNibName */
+
 
 /*
- ViewDidLoad
- --------
- Purpose:        Init/Alloc initial methods
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   ViewWillAppear
+   --------
+   Purpose:        Reload Data
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (void)viewDidLoad
-{
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [toTableview reloadData];
+} /* viewWillAppear */
+
+
+/*
+   ViewDidLoad
+   --------
+   Purpose:        Init/Alloc initial methods
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
+ */
+- (void) viewDidLoad {
     [super viewDidLoad];
-    
-    // Do any additional setup after loading the view, typically from a nib.
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.view.bounds.size.width,
-                                                                   self.navigationController.view.bounds.size.height) style:UITableViewStyleGrouped];
+
     // Load Exchange Codes
     [self downloadCurrencyExchangeCodes];
     // Load Exchange Rates
     [self downloadCurrencyExchangeRates];
-    
+
+    // Do any additional setup after loading the view, typically from a nib.
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.view.bounds.size.width,
+                                                                   self.navigationController.view.bounds.size.height) style:UITableViewStyleGrouped];
     // Add Notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(calculateConversion:)
                                                  name:@"UITextFieldTextDidChangeNotification" object:amountTextfield];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(calculateConversion:)
                                                  name:@"UITextFieldTextDidChangeNotification" object:conversionLabel];
-}
+} /* viewDidLoad */
+
 
 /*
- KeyboardToolbar
- --------
- Purpose:        Adds done/cancel to keyboard
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   KeyboardToolbar
+   --------
+   Purpose:        Adds done/cancel to keyboard
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (UIToolbar *) keyboardToolbar
-{
-    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
+- (UIToolbar *) keyboardToolbar {
+    UIToolbar *numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
     numberToolbar.barStyle = UIBarStyleBlackTranslucent;
     numberToolbar.items = [NSArray arrayWithObjects:
                            [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNumberPad)],
@@ -81,156 +95,167 @@
                            [[UIBarButtonItem alloc]initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
                            nil];
     [numberToolbar sizeToFit];
-    
+
     return numberToolbar;
-}
+} /* keyboardToolbar */
+
 
 /*
- SelectCurrencyNavigationView
- --------
- Purpose:        Pushes view to select currency
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   SelectCurrencyNavigationView
+   --------
+   Purpose:        Pushes view to select currency
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (void) selectCurrencyNavigationView
-{
+- (void) selectCurrencyNavigationView {
     UIViewController *vc = [[UIViewController alloc] init];
     vc.title = @"Select Currency";
     toTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.view.bounds.size.width,
                                                                 vc.view.bounds.size.height - 49 * 2) style:UITableViewStylePlain];
     toTableview.dataSource = self;
     toTableview.delegate = self;
+    [toTableview reloadData];
     [vc.view addSubview:toTableview];
     [self.navigationController pushViewController:vc animated:YES];
-}
+} /* selectCurrencyNavigationView */
+
 
 /*
- DownloadCurrencyExchangeCodes
- --------
- Purpose:        Caches Currency Codes
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   DownloadCurrencyExchangeCodes
+   --------
+   Purpose:        Caches Currency Codes
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (void) downloadCurrencyExchangeCodes
-{
+- (void) downloadCurrencyExchangeCodes {
     // Downloads and places codes in dictionaries
     DownloadCurrencyCodes *downloadCodes = [[DownloadCurrencyCodes alloc] init];
     [downloadCodes downloadUrl];
-}
+} /* downloadCurrencyExchangeCodes */
+
 
 /*
- downloadCurrencyExchangeRates
- --------
- Purpose:        Caches Currencies
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   downloadCurrencyExchangeRates
+   --------
+   Purpose:        Caches Currencies
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (void) downloadCurrencyExchangeRates
-{
+- (void) downloadCurrencyExchangeRates {
     DownloadCurrencyRates *downloadRates = [[DownloadCurrencyRates alloc] init];
     [downloadRates downloadUrl];
-}
+} /* downloadCurrencyExchangeRates */
+
 
 /*
- NumberOfSectionsInTableView
- --------
- Purpose:        Tableview Delegate
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   NumberOfSectionsInTableView
+   --------
+   Purpose:        Tableview Delegate
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     if (tableView == toTableview)
         return 1;
+
     return 5;
-}
+} /* numberOfSectionsInTableView */
+
 
 /*
- NumberOfRowsInSection
- --------
- Purpose:        Tableview Delegate
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   NumberOfRowsInSection
+   --------
+   Purpose:        Tableview Delegate
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == toTableview)
         return [[AppDelegate getNameArray] count];
+
     return 1;
-}
+} /* tableView */
+
 
 /*
- TitleForHeaderInSection
- --------
- Purpose:        Tableview Delegate
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   TitleForHeaderInSection
+   --------
+   Purpose:        Tableview Delegate
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
-    if (tableView == self.tableView)
-    {
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+
+    if (tableView == self.tableView) {
         switch (section) {
             case 0:
                 return @"Enter Amount";
+
                 break;
             case 1:
                 return @"   From";
+
                 break;
             case 2:
                 return @"   To";
+
                 break;
             case 3:
                 return @"Conversion Rate (Buy/Sell)";
+
                 break;
             case 4:
                 return @"Results";
+
                 break;
             default:
                 return @"";
+
                 break;
-        }
+        } /* switch */
     }
     return @"";
-}
+} /* tableView */
+
 
 /*
- CellForRowAtIndexPath
- --------
- Purpose:        Tableview Delegate
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   CellForRowAtIndexPath
+   --------
+   Purpose:        Tableview Delegate
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     static NSString *main_cell_identifier = @"cell";
-    static NSString *from_cell_identifier = @"from_cell";
-    
+    NSString *from_cell_identifier = [NSString stringWithFormat:@"from_cell_%d", indexPath.row];
+
     UITableViewCell *cell;
-    
-    if (tableView == self.tableView)
-    {
+
+    if (tableView == self.tableView) {
         // Try to retrieve from the table view a now-unused cell with the given identifier.
         cell = [tableView dequeueReusableCellWithIdentifier:main_cell_identifier];
-        
+
         // If no cell is available, create a new one using the given identifier.
         if (cell == nil) {
             // Use the default cell style.
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:main_cell_identifier];
         }
-        
+
         switch (indexPath.section) {
             case 0:
             {
@@ -244,7 +269,7 @@
                 amountTextfield.inputAccessoryView = [self keyboardToolbar];
                 cell.accessoryView = amountTextfield;
             }
-                break;
+            break;
             case 1:
             {
                 UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
@@ -253,7 +278,7 @@
                 label.text = @"USD";
                 cell.accessoryView = label;
             }
-                break;
+            break;
             case 2:
             {
                 toLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
@@ -263,7 +288,7 @@
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.accessoryView = toLabel;
             }
-                break;
+            break;
             case 3:
             {
                 conversionLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
@@ -272,7 +297,7 @@
                 conversionLabel.text = toConversionAmount;
                 cell.accessoryView = conversionLabel;
             }
-                break;
+            break;
             case 4:
             {
                 resultsLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
@@ -281,16 +306,14 @@
                 resultsLabel.text = resultAmount;
                 cell.accessoryView = resultsLabel;
             }
-                break;
+            break;
             default:
                 break;
-        }
-    }
-    else if (tableView == toTableview)
-    {
+        } /* switch */
+    } else if (tableView == toTableview) {
         // Try to retrieve from the table view a now-unused cell with the given identifier.
         cell = [tableView dequeueReusableCellWithIdentifier:from_cell_identifier];
-        
+
         // If no cell is available, create a new one using the given identifier.
         if (cell == nil) {
             // Use the default cell style.
@@ -302,11 +325,12 @@
             nameLabel.textAlignment = NSTextAlignmentLeft;
             nameLabel.font = [UIFont boldSystemFontOfSize:16.0f];
 
+            NSLog(@"codes: %@", [[AppDelegate getNameArray] objectAtIndex:indexPath.row]);
             // Sift Code or use symbol
             if ([[AppDelegate getCodesDictionary] objectForKey:[[AppDelegate getNameArray] objectAtIndex:indexPath.row]] != nil)
-            nameLabel.text = [NSString stringWithFormat:@"%@", [[[AppDelegate getCodesDictionary] objectForKey:[[AppDelegate getNameArray] objectAtIndex:indexPath.row]] valueForKey:@"name"]];
+                nameLabel.text = [NSString stringWithFormat:@"%@", [[[AppDelegate getCodesDictionary] objectForKey:[[AppDelegate getNameArray] objectAtIndex:indexPath.row]] valueForKey:@"name"]];
             else
-            nameLabel.text = [NSString stringWithFormat:@"%@", [[AppDelegate getNameArray] objectAtIndex:indexPath.row] ];
+                nameLabel.text = [NSString stringWithFormat:@"%@", [[AppDelegate getNameArray] objectAtIndex:indexPath.row] ];
 
             [cell.contentView addSubview:nameLabel];
 
@@ -330,84 +354,81 @@
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         }
     }
-    
+
     return cell;
-}
+} /* tableView */
+
 
 /*
- CancelNumberPad
- --------
- Purpose:        Dismisses Pad
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   CancelNumberPad
+   --------
+   Purpose:        Dismisses Pad
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
--(void)cancelNumberPad{
+- (void) cancelNumberPad {
     [amountTextfield resignFirstResponder];
-}
+} /* cancelNumberPad */
+
 
 /*
- DoneWithNumberPad
- --------
- Purpose:        Dismisses Pad
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   DoneWithNumberPad
+   --------
+   Purpose:        Dismisses Pad
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
--(void)doneWithNumberPad{
+- (void) doneWithNumberPad {
     [amountTextfield resignFirstResponder];
-}
+} /* doneWithNumberPad */
 
 
 /*
- CalculateConversion
- --------
- Purpose:        Calculates and Sets Results
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   CalculateConversion
+   --------
+   Purpose:        Calculates and Sets Results
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (void) calculateConversion:(id)sender
-{
+- (void) calculateConversion:(id)sender {
     // Set Results variable
     enteredAmount = amountTextfield.text;
-    
+
     // Set Results field
-    if (![enteredAmount isEqualToString:@""] && enteredAmount != NULL)
-    {
+    if (![enteredAmount isEqualToString:@""] && (enteredAmount != NULL)) {
         float floatValue = [amountTextfield.text floatValue] * [toConversionAmount floatValue];
         resultAmount = [NSString stringWithFormat:@"%f", floatValue];
         resultsLabel.text = resultAmount;
     }
-}
+} /* calculateConversion */
+
 
 /*
- To conform to Human Interface Guildelines, since selecting a row would have no effect (such as navigation), make sure that rows cannot be selected.
+   To conform to Human Interface Guildelines, since selecting a row would have no effect (such as navigation), make sure that rows cannot be selected.
  */
 
 /*
- WillSelectRowAtIndexPath
- --------
- Purpose:        Tableview Delegate
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   WillSelectRowAtIndexPath
+   --------
+   Purpose:        Tableview Delegate
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (tableView == self.tableView)
-    {
-        if (indexPath.section == 2)
-        {
+- (NSIndexPath *) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (tableView == self.tableView) {
+        if (indexPath.section == 2) {
             [self selectCurrencyNavigationView];
         }
-    }
-    else if (tableView == toTableview)
-    {
+    } else if (tableView == toTableview) {
         toConversionName = [[AppDelegate getNameArray] objectAtIndex:indexPath.row];
         toLabel.text = toConversionName;
         toConversionAmount = [[AppDelegate getPriceArray] objectAtIndex:indexPath.row];
@@ -415,38 +436,41 @@
         [self calculateConversion:self];
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
-    
+
     return nil;
-}
+} /* tableView */
+
 
 /*
- ShouldChangeCharactersInRange
- --------
- Purpose:        TextField Delegate
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   ShouldChangeCharactersInRange
+   --------
+   Purpose:        TextField Delegate
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  {
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  {
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
     NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-    return (([string isEqualToString:filtered])&&(newLength <= CHARACTER_LIMIT));
-}
+    return (([string isEqualToString:filtered]) && (newLength <= CHARACTER_LIMIT));
+} /* textField */
+
 
 /*
- textFieldShouldReturn
- --------
- Purpose:        TextField Delegate
- Parameters:     none
- Returns:        none
- Notes:          --
- Author:         Neil Burchfield
+   textFieldShouldReturn
+   --------
+   Purpose:        TextField Delegate
+   Parameters:     none
+   Returns:        none
+   Notes:          --
+   Author:         Neil Burchfield
  */
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
-}
+} /* textFieldShouldReturn */
+
 
 @end

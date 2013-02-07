@@ -99,7 +99,6 @@ static NSMutableArray *priceArray;
 + (void) setCodesDictionary:(NSMutableDictionary *)dictionary {
     currencyCodesDictionary = [[NSMutableDictionary alloc] init];
     currencyCodesDictionary = [dictionary copy];
-    NSLog(@"CODES: %@", currencyCodesDictionary);
 } /* setCodesDictionary */
 
 
