@@ -34,13 +34,17 @@ static NSMutableArray *priceArray;
 
     // Override point for customization after application launch.
     UIViewController *viewController1;
+    // If iPad, use FirstViewController Class
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
         viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
+    // Else, Use FirstViewController_iPhone Class
     else
         viewController1 = [[FirstViewController_iPhone alloc] initWithNibName:@"FirstViewController_iPhone" bundle:nil];
 
+    // Add Chosen class to navigation controller
     UINavigationController *rvc1 = [[UINavigationController alloc] initWithRootViewController:viewController1];
 
+    // Add second class to navigation controller
     UIViewController *viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
     UINavigationController *rvc2 = [[UINavigationController alloc] initWithRootViewController:viewController2];
 

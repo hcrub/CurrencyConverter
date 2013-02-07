@@ -53,8 +53,12 @@
     
     [self createPopover];
     
+    // Load Exchange Codes
+    [self downloadCurrencyExchangeCodes];
+    // Load Exchange Rates
     [self downloadCurrencyExchangeRates];
     
+    // Add Notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(calculateConversion:)
                                                  name:@"UITextFieldTextDidChangeNotification" object:amountTextfield];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(calculateConversion:)
@@ -72,14 +76,32 @@
  */
 - (void) createPopover
 {
+    // Create Popover for iPad
     UIViewController *popoverViewController = [[UIViewController alloc] init];
     toTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 300, 300) style:UITableViewStylePlain];
     toTableview.dataSource = self;
     toTableview.delegate = self;
     
+    // Add Tableview to Popover
     [popoverViewController.view addSubview:toTableview];
     popover = [[UIPopoverController alloc] initWithContentViewController:popoverViewController];
     [popover setPopoverContentSize:CGSizeMake(300, 300)];
+}
+
+/*
+ DownloadCurrencyExchangeCodes
+ --------
+ Purpose:        Caches Currency Codes
+ Parameters:     none
+ Returns:        none
+ Notes:          --
+ Author:         Neil Burchfield
+ */
+- (void) downloadCurrencyExchangeCodes
+{
+    // Downloads and places codes in dictionaries
+    DownloadCurrencyCodes *downloadCodes = [[DownloadCurrencyCodes alloc] init];
+    [downloadCodes downloadUrl];
 }
 
 /*
@@ -164,6 +186,15 @@
     return @"";
 }
 
+/*
+ KeyboardToolbar
+ --------
+ Purpose:        Adds done/cancel to keyboard
+ Parameters:     none
+ Returns:        none
+ Notes:          --
+ Author:         Neil Burchfield
+ */
 - (UIToolbar *) keyboardToolbar
 {
     UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
@@ -274,6 +305,7 @@
             nameLabel.textAlignment = NSTextAlignmentLeft;
             nameLabel.font = [UIFont boldSystemFontOfSize:16.0f];
             
+            // Place codes instead of code symbols
             if ([[AppDelegate getCodesDictionary] objectForKey:[[AppDelegate getNameArray] objectAtIndex:indexPath.row]] != nil)
                 nameLabel.text = [NSString stringWithFormat:@"%@", [[[AppDelegate getCodesDictionary] objectForKey:[[AppDelegate getNameArray] objectAtIndex:indexPath.row]] valueForKey:@"name"]];
             else
@@ -281,6 +313,7 @@
             
             [cell.contentView addSubview:nameLabel];
             
+            // Detail Label
             UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 22, 200, 21)];
             detailLabel.backgroundColor = [UIColor clearColor];
             detailLabel.textAlignment = NSTextAlignmentLeft;
@@ -289,6 +322,7 @@
             detailLabel.text = [[AppDelegate getNameArray] objectAtIndex:indexPath.row];
             [cell.contentView addSubview:detailLabel];
             
+            // Currency Values
             UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 125, 21)];
             valueLabel.backgroundColor = [UIColor clearColor];
             valueLabel.textAlignment = NSTextAlignmentLeft;
@@ -322,10 +356,28 @@
     }
 }
 
+/*
+ CancelNumberPad
+ --------
+ Purpose:        Dismisses Pad
+ Parameters:     none
+ Returns:        none
+ Notes:          --
+ Author:         Neil Burchfield
+ */
 -(void)cancelNumberPad{
     [amountTextfield resignFirstResponder];
 }
 
+/*
+ DoneWithNumberPad
+ --------
+ Purpose:        Dismisses Pad
+ Parameters:     none
+ Returns:        none
+ Notes:          --
+ Author:         Neil Burchfield
+ */
 -(void)doneWithNumberPad{
     [amountTextfield resignFirstResponder];
 }
@@ -349,6 +401,7 @@
     {
         if (indexPath.section == 2)
         {
+            // Produce Popover
             CGRect rect = [tableView rectForRowAtIndexPath:indexPath];
             [popover presentPopoverFromRect:CGRectMake(rect.size.width - 300, rect.origin.y + rect.size.height/2 + 57, 10, 10)
                                      inView:self.navigationController.view permittedArrowDirections:UIPopoverArrowDirectionLeft
@@ -357,6 +410,7 @@
     }
     else if (tableView == toTableview)
     {
+        // Handle Selection and Calculate
         toConversionName = [[AppDelegate getNameArray] objectAtIndex:indexPath.row];
         toLabel.text = toConversionName;
         toConversionAmount = [[AppDelegate getPriceArray] objectAtIndex:indexPath.row];

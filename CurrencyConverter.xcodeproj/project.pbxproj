@@ -10,8 +10,6 @@
 		620E450B16C3255F0028F19E /* FirstViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 620E450916C3255F0028F19E /* FirstViewController_iPhone.m */; };
 		620E450C16C3255F0028F19E /* FirstViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 620E450A16C3255F0028F19E /* FirstViewController_iPhone.xib */; };
 		620E451816C32A580028F19E /* DownloadCurrencyCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 620E451716C32A580028F19E /* DownloadCurrencyCodes.m */; };
-		620E451C16C331320028F19E /* donedown.png in Resources */ = {isa = PBXBuildFile; fileRef = 620E451A16C331320028F19E /* donedown.png */; };
-		620E451D16C331320028F19E /* doneup.png in Resources */ = {isa = PBXBuildFile; fileRef = 620E451B16C331320028F19E /* doneup.png */; };
 		62DEE9A016C19B71009A9F75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DEE99F16C19B71009A9F75 /* UIKit.framework */; };
 		62DEE9A216C19B71009A9F75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DEE9A116C19B71009A9F75 /* Foundation.framework */; };
 		62DEE9A416C19B71009A9F75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DEE9A316C19B71009A9F75 /* CoreGraphics.framework */; };
@@ -33,13 +31,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		620E450816C3255F0028F19E /* FirstViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController_iPhone.h; sourceTree = "<group>"; };
-		620E450916C3255F0028F19E /* FirstViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController_iPhone.m; sourceTree = "<group>"; };
-		620E450A16C3255F0028F19E /* FirstViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController_iPhone.xib; sourceTree = "<group>"; };
-		620E451616C32A580028F19E /* DownloadCurrencyCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCurrencyCodes.h; sourceTree = "<group>"; };
-		620E451716C32A580028F19E /* DownloadCurrencyCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCurrencyCodes.m; sourceTree = "<group>"; };
-		620E451A16C331320028F19E /* donedown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = donedown.png; sourceTree = "<group>"; };
-		620E451B16C331320028F19E /* doneup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doneup.png; sourceTree = "<group>"; };
+		620E450816C3255F0028F19E /* FirstViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstViewController_iPhone.h; path = CurrencyConverter/FirstViewController_iPhone.h; sourceTree = "<group>"; };
+		620E450916C3255F0028F19E /* FirstViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstViewController_iPhone.m; path = CurrencyConverter/FirstViewController_iPhone.m; sourceTree = "<group>"; };
+		620E450A16C3255F0028F19E /* FirstViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FirstViewController_iPhone.xib; path = CurrencyConverter/FirstViewController_iPhone.xib; sourceTree = "<group>"; };
+		620E451616C32A580028F19E /* DownloadCurrencyCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadCurrencyCodes.h; path = CurrencyConverter/DownloadCurrencyCodes.h; sourceTree = "<group>"; };
+		620E451716C32A580028F19E /* DownloadCurrencyCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadCurrencyCodes.m; path = CurrencyConverter/DownloadCurrencyCodes.m; sourceTree = "<group>"; };
 		62DEE99C16C19B71009A9F75 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62DEE99F16C19B71009A9F75 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		62DEE9A116C19B71009A9F75 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -163,8 +159,6 @@
 		62DEE9A616C19B71009A9F75 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				620E451A16C331320028F19E /* donedown.png */,
-				620E451B16C331320028F19E /* doneup.png */,
 				62DEE9D616C1DD94009A9F75 /* Images */,
 				62DEE9A716C19B71009A9F75 /* CurrencyConverter-Info.plist */,
 				62DEE9A816C19B71009A9F75 /* InfoPlist.strings */,
@@ -279,8 +273,6 @@
 				62DEE9C716C19B71009A9F75 /* FirstViewController.xib in Resources */,
 				62DEE9CA16C19B71009A9F75 /* SecondViewController.xib in Resources */,
 				620E450C16C3255F0028F19E /* FirstViewController_iPhone.xib in Resources */,
-				620E451C16C331320028F19E /* donedown.png in Resources */,
-				620E451D16C331320028F19E /* doneup.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
