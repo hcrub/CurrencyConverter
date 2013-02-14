@@ -428,6 +428,7 @@
         conversionLabel.text = toConversionAmount;
         [self calculateConversion:self];
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        [popover dismissPopoverAnimated:YES];
     }
 
     return nil;
