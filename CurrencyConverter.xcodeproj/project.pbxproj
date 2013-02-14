@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060E385316CAB098001F585C /* cc-app-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 060E385116CAB098001F585C /* cc-app-114.png */; };
+		060E385616CAB0DA001F585C /* cc-app-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 060E385516CAB0DA001F585C /* cc-app-114.png */; };
+		060E385816CAB159001F585C /* cc-app-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 060E385716CAB159001F585C /* cc-app-57.png */; };
+		060E385A16CAB162001F585C /* cc-app-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 060E385916CAB162001F585C /* cc-app-57.png */; };
 		620E450B16C3255F0028F19E /* FirstViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 620E450916C3255F0028F19E /* FirstViewController_iPhone.m */; };
 		620E450C16C3255F0028F19E /* FirstViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 620E450A16C3255F0028F19E /* FirstViewController_iPhone.xib */; };
 		620E451816C32A580028F19E /* DownloadCurrencyCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 620E451716C32A580028F19E /* DownloadCurrencyCodes.m */; };
@@ -31,6 +35,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		060E385116CAB098001F585C /* cc-app-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cc-app-114.png"; path = "../cc-app-114.png"; sourceTree = "<group>"; };
+		060E385516CAB0DA001F585C /* cc-app-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cc-app-114.png"; sourceTree = "<group>"; };
+		060E385716CAB159001F585C /* cc-app-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cc-app-57.png"; path = "../cc-app-57.png"; sourceTree = "<group>"; };
+		060E385916CAB162001F585C /* cc-app-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cc-app-57.png"; sourceTree = "<group>"; };
 		620E450816C3255F0028F19E /* FirstViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstViewController_iPhone.h; path = CurrencyConverter/FirstViewController_iPhone.h; sourceTree = "<group>"; };
 		620E450916C3255F0028F19E /* FirstViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstViewController_iPhone.m; path = CurrencyConverter/FirstViewController_iPhone.m; sourceTree = "<group>"; };
 		620E450A16C3255F0028F19E /* FirstViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FirstViewController_iPhone.xib; path = CurrencyConverter/FirstViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -117,6 +125,10 @@
 		62DEE99316C19B70009A9F75 = {
 			isa = PBXGroup;
 			children = (
+				060E385916CAB162001F585C /* cc-app-57.png */,
+				060E385716CAB159001F585C /* cc-app-57.png */,
+				060E385516CAB0DA001F585C /* cc-app-114.png */,
+				060E385116CAB098001F585C /* cc-app-114.png */,
 				62DEE9A516C19B71009A9F75 /* CurrencyConverter */,
 				62DEE99E16C19B71009A9F75 /* Frameworks */,
 				62DEE99D16C19B71009A9F75 /* Products */,
@@ -273,6 +285,10 @@
 				62DEE9C716C19B71009A9F75 /* FirstViewController.xib in Resources */,
 				62DEE9CA16C19B71009A9F75 /* SecondViewController.xib in Resources */,
 				620E450C16C3255F0028F19E /* FirstViewController_iPhone.xib in Resources */,
+				060E385316CAB098001F585C /* cc-app-114.png in Resources */,
+				060E385616CAB0DA001F585C /* cc-app-114.png in Resources */,
+				060E385816CAB159001F585C /* cc-app-57.png in Resources */,
+				060E385A16CAB162001F585C /* cc-app-57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,8 +400,8 @@
 		62DEE9CE16C19B71009A9F75 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Neil Burchfield (546B4X5N6L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Neil Burchfield (546B4X5N6L)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kai Rush (6R8F689JEH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kai Rush (6R8F689JEH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CurrencyConverter/CurrencyConverter-Prefix.pch";
 				INFOPLIST_FILE = "CurrencyConverter/CurrencyConverter-Info.plist";
@@ -400,8 +416,8 @@
 		62DEE9CF16C19B71009A9F75 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Neil Burchfield (546B4X5N6L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Neil Burchfield (546B4X5N6L)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kai Rush (6R8F689JEH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kai Rush (6R8F689JEH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CurrencyConverter/CurrencyConverter-Prefix.pch";
 				INFOPLIST_FILE = "CurrencyConverter/CurrencyConverter-Info.plist";
